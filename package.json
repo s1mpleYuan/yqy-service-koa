@@ -1,10 +1,19 @@
 {
   "name": "yqy-service-koa",
   "version": "1.0.0",
-  "description": "",
+  "description": "nodejs koa 后端项目",
   "main": "index.js",
   "scripts": {
+    "prepare": "husky install",
+    "lint-fix": "pnpm run lint-eslint-fix",
+    "lint-eslint-fix": "eslint . --ext .js --fix",
     "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run lint-fix",
+      "commit-msg": "commitlint -e $HUSKY_GIT_PARAMS"
+    }
   },
   "author": "yuanqingyan",
   "license": "ISC",
@@ -30,6 +39,16 @@
     "@commitlint/cli": "^16.0.1",
     "@commitlint/config-conventional": "^16.0.0",
     "eslint": "^8.6.0",
-    "husky": "^7.0.4"
-  }
+    "husky": "^7.0.4",
+    "standard": "^16.0.4"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/s1mpleYuan/yqy-service-koa.git"
+  },
+  "keywords": [],
+  "bugs": {
+    "url": "https://github.com/s1mpleYuan/yqy-service-koa/issues"
+  },
+  "homepage": "https://github.com/s1mpleYuan/yqy-service-koa#readme"
 }

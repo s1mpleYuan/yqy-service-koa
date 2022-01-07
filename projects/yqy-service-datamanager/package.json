@@ -4,13 +4,7 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "prepare": "husky install"
-  },
-  "husky": {
-    "hooks": {
-      "commit-msg": "commitlint -e $HUSKY_GIT_PARAMS"
-    }
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "yuanqingyan",
   "license": "ISC"
