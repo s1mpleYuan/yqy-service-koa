@@ -1,0 +1,15 @@
+{
+  "name": "yqy-service-functionplatform",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "dev": "supervisor app.js",
+    "pro": "node app.js",
+    "test": "node test.js",
+    "buildSql": "node build.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
