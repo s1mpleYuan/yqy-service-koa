@@ -1,10 +1,10 @@
 /*
  * @Author: yuanqingyan
- * @Date: 2022-03-24 09:44:46
+ * @Date: 2022-04-07 15:20:07
  * @LastEditors: yuanqingyan
- * @LastEditTime: 2022-04-07 17:12:33
- * @Description: UserInfo Sequelize Model 依赖于 User
- * @FilePath: \yqy-service-koa\projects\yqy-service-functionplatform\models\userInfo.js
+ * @LastEditTime: 2022-04-07 15:30:41
+ * @Description: PointList Sequelize Model 积分清单
+ * @FilePath: \yqy-service-koa\projects\yqy-service-functionplatform\models\pointList.js
  */
 const {
   DataTypes,
@@ -17,45 +17,40 @@ const {
 } = require("../utils");
 const dayjs = require("dayjs");
 
-class UserInfoModel extends Model {}
+class PointListModel extends Model {}
 
-UserInfoModel.init({
-  userId: {
-    type: DataTypes.STRING(9),
+PointListModel.init({
+  listId: {
+    type: DataTypes.STRING(12),
     primaryKey: true,
-    comment: '用户唯一标识，依赖于 users.userId'
+    comment: '积分清单项标识ID'
   },
-  userName: {
+  listType: {
+    type: DataTypes.STRING(10),
+    comment: '积分清单类型'
+  },
+  listName: {
     type: DataTypes.STRING(20),
     allowNull: false,
-    unique: true,
-    comment: '用户名称'
+    comment: '积分清单项名称'
   },
-  password: {
-    type: DataTypes.STRING(256),
+  totalPoint: {
+    type: DataTypes.INTEGER,
     allowNull: false,
-    comment: '用户登录密码'
+    comment: '所需积分'
   },
-  email: {
-    type: DataTypes.STRING(30),
-    comment: '用户邮箱',
-    get() {
-      return this.getDataValue('email') || ''
-    }
+  exchangeCycle: {
+    type: DataTypes.STRING(5),
+    allowNull: false,
+    comment: '积分兑换周期'
   },
-  phone: {
-    type: DataTypes.STRING(11),
-    comment: '用户联系方式',
-    get() {
-      return this.getDataValue('phone') || ''
-    }
+  explain: {
+    type: DataTypes.STRING(200),
+    comment: '积分清单项说明'
   },
-  avatarUrl: {
-    type: DataTypes.STRING,
-    comment: '用户头像url',
-    get() {
-      return this.getDataValue('avatarUrl') || ''
-    }
+  isUse: {
+    type: DataTypes.BOOLEAN,
+    comment: '是否启用'
   },
   createTime: {
     type: DataTypes.DATE,
@@ -83,9 +78,9 @@ UserInfoModel.init({
   },
 }, {
   sequelize: sqlInstance,
-  tableName: 'userInfo',
+  tableName: 'pointlist',
   updatedAt: 'updateTime',
   createdAt: 'createTime'
 })
 
-module.exports = UserInfoModel;
+module.exports = PointListModel;

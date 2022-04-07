@@ -2,7 +2,7 @@
  * @Author: yuanqingyan
  * @Date: 2022-03-21 08:54:53
  * @LastEditors: yuanqingyan
- * @LastEditTime: 2022-03-21 17:19:02
+ * @LastEditTime: 2022-04-07 16:17:55
  * @Description: app.js
  * @FilePath: \yqy-service-koa\projects\yqy-service-functionplatform\app.js
  */
@@ -58,6 +58,8 @@ app.use(
   }).unless({
     // token 白名单
     path: [
+      /^\/func\/user\/login/,
+      /^\/func\/user\/register/,
       // /^\/document\/user\/login/,
       // /^\/colorful/,
     ],

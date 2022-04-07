@@ -1,10 +1,10 @@
 /*
  * @Author: yuanqingyan
- * @Date: 2022-03-24 09:44:46
+ * @Date: 2022-04-07 15:03:49
  * @LastEditors: yuanqingyan
- * @LastEditTime: 2022-04-07 17:12:33
- * @Description: UserInfo Sequelize Model 依赖于 User
- * @FilePath: \yqy-service-koa\projects\yqy-service-functionplatform\models\userInfo.js
+ * @LastEditTime: 2022-04-07 15:36:22
+ * @Description: Points Sequelize Model 积分项（女朋友版）
+ * @FilePath: \yqy-service-koa\projects\yqy-service-functionplatform\models\gfpoint.js
  */
 const {
   DataTypes,
@@ -17,45 +17,32 @@ const {
 } = require("../utils");
 const dayjs = require("dayjs");
 
-class UserInfoModel extends Model {}
+class GfPointModel extends Model {}
 
-UserInfoModel.init({
-  userId: {
+GfPointModel.init({
+  id: {
     type: DataTypes.STRING(9),
     primaryKey: true,
-    comment: '用户唯一标识，依赖于 users.userId'
+    comment: '积分项主键ID'
   },
-  userName: {
-    type: DataTypes.STRING(20),
+  name: {
+    type: DataTypes.STRING(100),
     allowNull: false,
-    unique: true,
-    comment: '用户名称'
+    comment: '可积分项名称',
   },
-  password: {
-    type: DataTypes.STRING(256),
+  point: {
+    type: DataTypes.INTEGER,
     allowNull: false,
-    comment: '用户登录密码'
+    comment: '积分'
   },
-  email: {
-    type: DataTypes.STRING(30),
-    comment: '用户邮箱',
-    get() {
-      return this.getDataValue('email') || ''
-    }
+  unit: {
+    type: DataTypes.STRING(3),
+    allowNull: false,
+    comment: '积分单位'
   },
-  phone: {
-    type: DataTypes.STRING(11),
-    comment: '用户联系方式',
-    get() {
-      return this.getDataValue('phone') || ''
-    }
-  },
-  avatarUrl: {
-    type: DataTypes.STRING,
-    comment: '用户头像url',
-    get() {
-      return this.getDataValue('avatarUrl') || ''
-    }
+  isUse: {
+    type: DataTypes.BOOLEAN,
+    comment: '是否启用'
   },
   createTime: {
     type: DataTypes.DATE,
@@ -80,12 +67,12 @@ UserInfoModel.init({
     set(value) {
       this.setDataValue("updateTime", dayjs(value).format('YYYY-MM-DD HH:mm:ss'))
     }
-  },
+  }
 }, {
   sequelize: sqlInstance,
-  tableName: 'userInfo',
+  tableName: 'gfPoints',
   updatedAt: 'updateTime',
   createdAt: 'createTime'
 })
 
-module.exports = UserInfoModel;
+module.exports = GfPointModel;
