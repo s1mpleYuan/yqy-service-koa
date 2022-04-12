@@ -1,10 +1,10 @@
 /*
  * @Author: yuanqingyan
- * @Date: 2022-04-07 15:03:49
+ * @Date: 2022-04-08 09:17:34
  * @LastEditors: yuanqingyan
- * @LastEditTime: 2022-04-08 09:26:25
- * @Description: Points Sequelize Model 积分项（女朋友版）
- * @FilePath: \yqy-service-koa\projects\yqy-service-functionplatform\models\gfpoint.js
+ * @LastEditTime: 2022-04-08 09:22:22
+ * @Description: PlatformMenu Sequelize Model 平台菜单
+ * @FilePath: \yqy-service-koa\projects\yqy-service-functionplatform\models\platformMenu.js
  */
 const {
     DataTypes,
@@ -17,32 +17,25 @@ const {
 } = require("../utils");
 const dayjs = require("dayjs");
 
-class GfPointModel extends Model {}
+class PlatformMenuModel extends Model {}
 
-GfPointModel.init({
-    id: {
-        type: DataTypes.STRING(9),
+PlatformMenuModel.init({
+    menuId: {
+        type: DataTypes.STRING(12),
         primaryKey: true,
-        comment: '积分项主键ID'
+        comment: '平台菜单标识ID'
     },
-    name: {
-        type: DataTypes.STRING(100),
-        allowNull: false,
-        comment: '可积分项名称',
+    menuName: {
+        type: DataTypes.STRING(20),
+        comment: '平台菜单名称'
     },
-    point: {
-        type: DataTypes.INTEGER,
-        allowNull: false,
-        comment: '积分'
+    menuURL: {
+        type: DataTypes.STRING,
+        comment: '平台菜单URL, 可以是vue 路由也可能是http(s)链接'
     },
-    unit: {
-        type: DataTypes.STRING(3),
-        allowNull: false,
-        comment: '积分单位'
-    },
-    isUse: {
-        type: DataTypes.BOOLEAN,
-        comment: '是否启用'
+    state: {
+        type: DataTypes.STRING(1),
+        comment: '是否启用菜单，0 禁用菜单 1 启用菜单'
     },
     createTime: {
         type: DataTypes.DATE,
@@ -70,9 +63,8 @@ GfPointModel.init({
     }
 }, {
     sequelize: sqlInstance,
-    tableName: 'gfPoints',
+    tableName: 'platformMenu',
     updatedAt: 'updateTime',
     createdAt: 'createTime'
 })
-
-module.exports = GfPointModel;
+module.exports = PlatformMenuModel;

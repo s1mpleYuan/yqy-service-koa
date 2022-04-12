@@ -2,7 +2,7 @@
  * @Author: yuanqingyan
  * @Date: 2022-03-23 10:06:10
  * @LastEditors: yuanqingyan
- * @LastEditTime: 2022-04-07 17:15:46
+ * @LastEditTime: 2022-04-08 09:22:49
  * @Description: 数据库 build
  * @FilePath: \yqy-service-koa\projects\yqy-service-functionplatform\build.js
  */
@@ -11,17 +11,19 @@ const UserInfoModel = require('./models/userInfo');
 const GfPointModel = require('./models/gfpoint');
 const PointListModel = require('./models/pointList');
 const PointExchangeRecordModel = require('./models/pointExchangeRecord');
+const ConfigureModel = require('./models/configure');
+const PlatformMenuModel = require('./models/platformMenu');
 
 const {
-  sqlInstance
+    sqlInstance
 } = require('./utils/index');
 const {
-  isEmpty,
-  isString
+    isEmpty,
+    isString
 } = require('lodash');
 
-UserInfoModel.sync({
-  alter: true
+PlatformMenuModel.sync({
+    alter: true
 });
 
 // UserModel.create({
@@ -29,13 +31,13 @@ UserInfoModel.sync({
 // }).then(result => {
 //   // console.log(result);
 
-  // UserModel.findAll({
-  //   // attributes: {
-  //   //   exclude: ['updateTime']
-  //   // },
-  // }).then(res => {
-  //   console.log(res[0].createTime);
-  // })
+// UserModel.findAll({
+//   // attributes: {
+//   //   exclude: ['updateTime']
+//   // },
+// }).then(res => {
+//   console.log(res[0].createTime);
+// })
 // })
 
 // UserInfoModel.create({
@@ -43,12 +45,12 @@ UserInfoModel.sync({
 //   userName: "Yuan",
 //   password: "123456"
 // }).then(() => {
-  // UserInfoModel.findAll({
-  //   attributes: ['userName'],
-  //   // raw: true
-  // }).then(res => {
-  //   console.log(res[0].userName);
-  // })
+// UserInfoModel.findAll({
+//   attributes: ['userName'],
+//   // raw: true
+// }).then(res => {
+//   console.log(res[0].userName);
+// })
 // })
 
 // const userInfo = UserInfoModel.build({

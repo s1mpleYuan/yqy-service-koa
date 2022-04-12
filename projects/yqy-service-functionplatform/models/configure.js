@@ -1,10 +1,10 @@
 /*
  * @Author: yuanqingyan
- * @Date: 2022-04-07 15:03:49
+ * @Date: 2022-04-08 09:03:25
  * @LastEditors: yuanqingyan
- * @LastEditTime: 2022-04-08 09:26:25
- * @Description: Points Sequelize Model 积分项（女朋友版）
- * @FilePath: \yqy-service-koa\projects\yqy-service-functionplatform\models\gfpoint.js
+ * @LastEditTime: 2022-04-08 09:14:43
+ * @Description: Configure Sequelize Models
+ * @FilePath: \yqy-service-koa\projects\yqy-service-functionplatform\models\configure.js
  */
 const {
     DataTypes,
@@ -17,32 +17,40 @@ const {
 } = require("../utils");
 const dayjs = require("dayjs");
 
-class GfPointModel extends Model {}
+class ConfigureModel extends Model {}
 
-GfPointModel.init({
-    id: {
-        type: DataTypes.STRING(9),
+ConfigureModel.init({
+    configId: {
+        type: DataTypes.STRING(12),
         primaryKey: true,
-        comment: '积分项主键ID'
+        comment: '配置标识ID'
     },
-    name: {
-        type: DataTypes.STRING(100),
+    configKey: {
+        type: DataTypes.STRING(30),
+        unique: true,
         allowNull: false,
-        comment: '可积分项名称',
+        comment: '配置字段KEY值'
     },
-    point: {
-        type: DataTypes.INTEGER,
+    configName: {
+        type: DataTypes.STRING(30),
         allowNull: false,
-        comment: '积分'
+        comment: '配置字段中文名称'
     },
-    unit: {
-        type: DataTypes.STRING(3),
+    configValue: {
+        type: DataTypes.STRING,
         allowNull: false,
-        comment: '积分单位'
+        comment: '配置字段的VALUE值',
+        get() {
+            return this.getDataValue('configState') == '0' ? null : this.getDataValue('configValue');
+        }
     },
-    isUse: {
-        type: DataTypes.BOOLEAN,
-        comment: '是否启用'
+    configPlain: {
+        type: DataTypes.STRING(200),
+        comment: '配置字段文本描述, 可为空'
+    },
+    configState: {
+        type: DataTypes.STRING(1),
+        comment: '当前配置的状态 0 该配置已禁用 无法获取(查询时为null); 1 该配置正常使用'
     },
     createTime: {
         type: DataTypes.DATE,
@@ -70,9 +78,9 @@ GfPointModel.init({
     }
 }, {
     sequelize: sqlInstance,
-    tableName: 'gfPoints',
+    tableName: 'configure',
     updatedAt: 'updateTime',
     createdAt: 'createTime'
 })
 
-module.exports = GfPointModel;
+module.exports = ConfigureModel;
