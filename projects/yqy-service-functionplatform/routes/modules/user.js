@@ -2,7 +2,7 @@
  * @Author: yuanqingyan
  * @Date: 2022-04-07 15:39:46
  * @LastEditors: yuanqingyan
- * @LastEditTime: 2022-04-08 10:14:47
+ * @LastEditTime: 2022-05-05 17:28:31
  * @Description: User Route 用户接口路由
  * @FilePath: \yqy-service-koa\projects\yqy-service-functionplatform\routes\modules\user.js
  */
@@ -28,6 +28,7 @@ router.post('/register', async(ctx) => {
 router.post('/login', async(ctx) => {
     try {
         const user = await queryUserByLogin(ctx.request.body);
+        
         ctx.success({
             ...user.dataValues,
             token: ACCESS_TOKEN(user.userId)

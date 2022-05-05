@@ -1,17 +1,5 @@
-const ACCESS_TOKEN = require('./utils/authorization');
+const style = 0;
+const color = 30;
+const input = '输出文本';
 
-// console.log(ACCESS_TOKEN('123'));
-
-const {
-  getId,
-  sqlInstance
-} = require('./utils');
-// console.log('test');
-// try {
-//   sqlInstance.authenticate();
-//   console.log('Connection has been established successfully.');
-// } catch (error) {
-//   console.error('Unable to connect to the database:', error);
-// }
-
-console.log(getId(9));
+process.stdout.write(`\x1b[${style};${color}m${input}\x1b[0m`)

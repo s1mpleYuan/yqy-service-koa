@@ -2,7 +2,7 @@
  * @Author: yuanqingyan
  * @Date: 2022-03-21 08:54:53
  * @LastEditors: yuanqingyan
- * @LastEditTime: 2022-04-08 09:55:38
+ * @LastEditTime: 2022-05-05 17:26:45
  * @Description: app.js
  * @FilePath: \yqy-service-koa\projects\yqy-service-functionplatform\app.js
  */
@@ -11,6 +11,9 @@ const path = require("path");
 const router = require("koa-router")();
 const app = new Koa();
 const resextra = require("./utils/resextra"); // 设置统一的响应格式
+const {
+    LOG
+} = require("./utils/logger"); // logger
 const bodyparser = require("koa-bodyparser"); // bodyparser
 const cors = require("koa-cors"); // 跨域cors
 const koaJwt = require("koa-jwt"); // koa token校验
@@ -27,6 +30,7 @@ app.use(bodyparser({
 app.use(static(path.join(__dirname, "public"))); // 引入静态资源配置中间件
 // 注册自定义的统一api响应格式
 app.use(resextra());
+
 // cors 跨域设置
 app.use(
     cors({
@@ -39,7 +43,7 @@ app.use(
     })
 );
 
-app.use(async(ctx, next) => {
+app.use(async (ctx, next) => {
     return next().catch((err) => {
         if (err.status === 401) {
             // 自定义返回结果
@@ -76,5 +80,6 @@ const {
     project_name: pn
 } = require("./config/index");
 app.listen(port, () => {
-    console.log(`[${pn}] start-quick is starting at port ${port} - ${dayjs().format('YYYY/MM/DD HH:mm:ss')}`);
+    // console.log(`[${pn}] start-quick is starting at port ${port} - ${dayjs().format('YYYY/MM/DD HH:mm:ss')}`);
+    LOG(`${pn}`, `start-quick is starting at port ${port}`)
 });
