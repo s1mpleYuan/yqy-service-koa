@@ -2,7 +2,7 @@
  * @Author: yuanqingyan
  * @Date: 2022-03-23 10:06:10
  * @LastEditors: yuanqingyan
- * @LastEditTime: 2022-04-08 09:22:49
+ * @LastEditTime: 2022-04-24 10:35:49
  * @Description: 数据库 build
  * @FilePath: \yqy-service-koa\projects\yqy-service-functionplatform\build.js
  */
@@ -13,6 +13,7 @@ const PointListModel = require('./models/pointList');
 const PointExchangeRecordModel = require('./models/pointExchangeRecord');
 const ConfigureModel = require('./models/configure');
 const PlatformMenuModel = require('./models/platformMenu');
+const YsMaterialModel = require('./models/ysMaterial');
 
 const {
     sqlInstance

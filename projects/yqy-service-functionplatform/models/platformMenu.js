@@ -2,7 +2,7 @@
  * @Author: yuanqingyan
  * @Date: 2022-04-08 09:17:34
  * @LastEditors: yuanqingyan
- * @LastEditTime: 2022-04-08 09:22:22
+ * @LastEditTime: 2022-04-25 08:59:23
  * @Description: PlatformMenu Sequelize Model 平台菜单
  * @FilePath: \yqy-service-koa\projects\yqy-service-functionplatform\models\platformMenu.js
  */
@@ -32,6 +32,14 @@ PlatformMenuModel.init({
     menuURL: {
         type: DataTypes.STRING,
         comment: '平台菜单URL, 可以是vue 路由也可能是http(s)链接'
+    },
+    menuType: {
+        type: DataTypes.STRING(1),
+        comment: '平台菜单类型 0 平台入口 1 平台子菜单'
+    },
+    permission: {
+        type: DataTypes.STRING(10),
+        comment: '菜单权限'
     },
     state: {
         type: DataTypes.STRING(1),
