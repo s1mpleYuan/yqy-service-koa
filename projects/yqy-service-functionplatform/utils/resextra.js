@@ -2,7 +2,7 @@
  * @Author: yuanqingyan
  * @Date: 2022-03-21 17:01:44
  * @LastEditors: yuanqingyan
- * @LastEditTime: 2022-04-25 09:51:26
+ * @LastEditTime: 2022-05-06 16:07:43
  * @Description: api 接口 响应返回
  * @FilePath: \yqy-service-koa\projects\yqy-service-functionplatform\utils\resextra.js
  */
@@ -24,7 +24,6 @@ function resextra(option = {}) {
     };
 
     ctx.fail = function(msg, code) {
-      console.error(msg);
       ctx.type = option.type || "json";
       ctx.body = {
         code: code || option.code || 0,

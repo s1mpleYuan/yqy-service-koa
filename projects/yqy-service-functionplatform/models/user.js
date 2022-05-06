@@ -2,7 +2,7 @@
  * @Author: yuanqingyan
  * @Date: 2022-03-23 09:50:11
  * @LastEditors: yuanqingyan
- * @LastEditTime: 2022-03-25 09:22:58
+ * @LastEditTime: 2022-05-06 16:20:02
  * @Description: User Sequelize Model
  * @FilePath: \yqy-service-koa\projects\yqy-service-functionplatform\models\user.js
  */
@@ -47,7 +47,7 @@ UserModel.init({
   sequelize: sqlInstance,
   tableName: 'users',
   createdAt: "createTime",
-  updatedAt: "updateTime"
+  updatedAt: "updateTime",
 })
 
 module.exports = UserModel;

@@ -2,7 +2,7 @@
  * @Author: yuanqingyan
  * @Date: 2022-03-21 08:54:53
  * @LastEditors: yuanqingyan
- * @LastEditTime: 2022-05-05 17:26:45
+ * @LastEditTime: 2022-05-06 14:53:01
  * @Description: app.js
  * @FilePath: \yqy-service-koa\projects\yqy-service-functionplatform\app.js
  */
@@ -11,9 +11,7 @@ const path = require("path");
 const router = require("koa-router")();
 const app = new Koa();
 const resextra = require("./utils/resextra"); // 设置统一的响应格式
-const {
-    LOG
-} = require("./utils/logger"); // logger
+const logger = require("./utils/logger"); // logger
 const bodyparser = require("koa-bodyparser"); // bodyparser
 const cors = require("koa-cors"); // 跨域cors
 const koaJwt = require("koa-jwt"); // koa token校验
@@ -30,6 +28,8 @@ app.use(bodyparser({
 app.use(static(path.join(__dirname, "public"))); // 引入静态资源配置中间件
 // 注册自定义的统一api响应格式
 app.use(resextra());
+
+logger();
 
 // cors 跨域设置
 app.use(
@@ -75,11 +75,21 @@ app.use(registerRouter());
 app.use(router.routes()); // 启动路由
 app.use(router.allowedMethods()); // router.allowedMethods()用在了路由匹配router.routes()之后,所以在当所有路由中间件最后调用.此时根据ctx.status设置response响应头
 
+let state = 0; // 0 | 1 / 2 - 3 \
+// const stateFlag = ['|', '/', '-', '\\'];
+const stateFlag = ['.', '..', '...', '....']
+
+const sever_listen = () => {
+    std_clear();
+    log(`${pn}`, `start-quick is starting at port ${port} ${stateFlag[state]} \n`);
+    // state == 3 ? state = 0 : state++;
+    // setTimeout(() => {
+    //     sever_listen();
+    // }, 500);
+}
+
 const {
     project_port: port,
     project_name: pn
 } = require("./config/index");
-app.listen(port, () => {
-    // console.log(`[${pn}] start-quick is starting at port ${port} - ${dayjs().format('YYYY/MM/DD HH:mm:ss')}`);
-    LOG(`${pn}`, `start-quick is starting at port ${port}`)
-});
+app.listen(port, sever_listen);
