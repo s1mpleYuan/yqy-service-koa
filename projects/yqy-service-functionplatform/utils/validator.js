@@ -2,11 +2,12 @@
  * @Author: yuanqingyan
  * @Date: 2022-05-06 14:46:13
  * @LastEditors: yuanqingyan
- * @LastEditTime: 2022-05-06 16:06:50
+ * @LastEditTime: 2022-05-12 13:35:51
  * @Description: 接口http 入参校验方法
  * @FilePath: \yqy-service-koa\projects\yqy-service-functionplatform\utils\validator.js
  */
 async function validator(ctx, next, params, options = {}, moduleName, fn) {
+  // 校验参数配置对象
   const keys = Object.keys(options);
   if (keys.length == 0) {
     await next();
@@ -14,7 +15,6 @@ async function validator(ctx, next, params, options = {}, moduleName, fn) {
     let validateNum = 0;
     for (validateNum; validateNum < keys.length; validateNum++) {
       const fieldName = keys[validateNum];
-      // console.log(fieldName, options[fieldName], params[fieldName]);
       const {
         required,
         min,

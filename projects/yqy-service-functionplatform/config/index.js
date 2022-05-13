@@ -2,7 +2,7 @@
  * @Author: yuanqingyan
  * @Date: 2022-03-21 16:26:31
  * @LastEditors: yuanqingyan
- * @LastEditTime: 2022-04-07 15:35:27
+ * @LastEditTime: 2022-05-12 10:20:47
  * @Description: 项目 config
  * @FilePath: \yqy-service-koa\projects\yqy-service-functionplatform\config\index.js
  */
@@ -18,7 +18,7 @@ const config = {
   },
   jwt_config: {
     secret: "yqy_functionPlatform",
-    expiresIn: "6h"
+    expiresIn: "12h"
   }
 }
 

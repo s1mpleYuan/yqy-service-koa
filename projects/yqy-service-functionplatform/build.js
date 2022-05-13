@@ -2,7 +2,7 @@
  * @Author: yuanqingyan
  * @Date: 2022-03-23 10:06:10
  * @LastEditors: yuanqingyan
- * @LastEditTime: 2022-04-24 10:35:49
+ * @LastEditTime: 2022-05-11 17:22:10
  * @Description: 数据库 build
  * @FilePath: \yqy-service-koa\projects\yqy-service-functionplatform\build.js
  */
@@ -14,6 +14,8 @@ const PointExchangeRecordModel = require('./models/pointExchangeRecord');
 const ConfigureModel = require('./models/configure');
 const PlatformMenuModel = require('./models/platformMenu');
 const YsMaterialModel = require('./models/ysMaterial');
+const RoleModel = require('./models/role');
+const FileUpload = require('./models/fileUpload');
 
 const {
     sqlInstance
@@ -23,7 +25,7 @@ const {
     isString
 } = require('lodash');
 
-PlatformMenuModel.sync({
+FileUpload.sync({
     alter: true
 });
 

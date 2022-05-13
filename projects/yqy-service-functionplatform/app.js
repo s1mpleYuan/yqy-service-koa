@@ -2,7 +2,7 @@
  * @Author: yuanqingyan
  * @Date: 2022-03-21 08:54:53
  * @LastEditors: yuanqingyan
- * @LastEditTime: 2022-05-06 14:53:01
+ * @LastEditTime: 2022-05-12 11:18:46
  * @Description: app.js
  * @FilePath: \yqy-service-koa\projects\yqy-service-functionplatform\app.js
  */
@@ -62,11 +62,11 @@ app.use(
     }).unless({
         // token 白名单
         path: [
+            /^\/func\/test/,
             /^\/func\/user\/login/,
             /^\/func\/user\/register/,
-            /^\/func\/platform\/createPlatformMenu/
-            // /^\/document\/user\/login/,
-            // /^\/colorful/,
+            /^\/func\/platform\/createPlatformMenu/,
+            // /^\/func\/fileUpload/,
         ],
     })
 );

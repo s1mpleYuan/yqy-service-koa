@@ -2,7 +2,7 @@
  * @Author: yuanqingyan
  * @Date: 2022-04-07 15:45:27
  * @LastEditors: yuanqingyan
- * @LastEditTime: 2022-04-08 09:30:36
+ * @LastEditTime: 2022-05-09 10:33:35
  * @Description: User Modules 用户操作数据库 MODULES
  * @FilePath: \yqy-service-koa\projects\yqy-service-functionplatform\modules\user.js
  */
@@ -28,7 +28,8 @@ async function createUser(userInfo) {
     try {
         // 先创建 UserModel
         const user = await UserModel.create({
-            userId: getId(9)
+            userId: getId(9),
+            roleId: ''
         }, {
             transaction: t
         });

@@ -1,10 +1,10 @@
 /*
  * @Author: yuanqingyan
- * @Date: 2022-03-23 09:50:11
+ * @Date: 2022-05-09 09:59:37
  * @LastEditors: yuanqingyan
- * @LastEditTime: 2022-05-09 10:19:08
- * @Description: User Sequelize Model
- * @FilePath: \yqy-service-koa\projects\yqy-service-functionplatform\models\user.js
+ * @LastEditTime: 2022-05-09 10:13:26
+ * @Description: Role Sequelize Model
+ * @FilePath: \yqy-service-koa\projects\yqy-service-functionplatform\models\role.js
  */
 const {
   DataTypes,
@@ -17,17 +17,21 @@ const {
 } = require("../utils");
 const dayjs = require("dayjs");
 
-class UserModel extends Model {}
+class RoleModel extends Model {}
 
-UserModel.init({
-  userId: {
-    type: DataTypes.STRING(9),
-    primaryKey: true,
-    comment: '用户唯一标识id'
-  },
+RoleModel.init({
   roleId: {
     type: DataTypes.STRING(9),
-    comment: '角色标识ID，依赖于 role.roleId'
+    primaryKey: true,
+    comment: '角色唯一标识ID'
+  },
+  roleName: {
+    type: DataTypes.STRING(30),
+    comment: '角色名称'
+  },
+  permission: {
+    type: DataTypes.STRING,
+    comment: '角色权限 0 总管理员 1 普通管理员 2 I类用户 3 II 二类用户 4 III 三类用户'
   },
   createTime: {
     type: DataTypes.DATE,
@@ -49,9 +53,9 @@ UserModel.init({
   },
 }, {
   sequelize: sqlInstance,
-  tableName: 'users',
+  tableName: 'role',
   createdAt: "createTime",
   updatedAt: "updateTime",
 })
 
-module.exports = UserModel;
+module.exports = RoleModel;

@@ -1,6 +1,7 @@
 /node_modules/
 packages/**/node_modules/
-projeacts/**/node_modules/
+projects/**/node_modules/
+projects/**/public/
 .husky/
 
 # Log files
