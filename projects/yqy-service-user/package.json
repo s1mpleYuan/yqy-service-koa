@@ -1,0 +1,14 @@
+{
+  "name": "yqy-service-user",
+  "version": "0.0.1",
+  "description": "身份认证nodejs+koa2 服务",
+  "main": "app.js",
+  "scripts": {
+    "dev": "supervisor app.js",
+    "pro": "node app.js",
+    "test": "node test.js",
+    "buildSql": "node build.js"
+  },
+  "author": "yuanqingyan",
+  "license": "ISC"
+}

@@ -2,9 +2,9 @@
  * @Author: yuanqingyan
  * @Date: 2022-05-06 14:46:13
  * @LastEditors: yuanqingyan
- * @LastEditTime: 2022-05-26 14:29:37
- * @Description: 接口http 入参校验中间件
- * @FilePath: \yqy-service-koa\projects\yqy-service-functionplatform\utils\validator.js
+ * @LastEditTime: 2022-05-27 11:28:36
+ * @Description: 接口http 入参校验方法
+ * @FilePath: \yqy-service-koa\projects\yqy-service-user\utils\validator.js
  */
 // 模块名称
 const moduleName = 'new project name';
