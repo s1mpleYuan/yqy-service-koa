@@ -2,7 +2,7 @@
  * @Author: yuanqingyan
  * @Date: 2022-05-24 15:39:45
  * @LastEditors: yuanqingyan
- * @LastEditTime: 2022-05-24 15:40:21
+ * @LastEditTime: 2022-06-07 14:00:34
  * @Description: User Route 用户接口路由
  * @FilePath: \yqy-service-koa\projects\yqy-service-user\routes\modules\user.js
  */
@@ -16,6 +16,11 @@ const ACCESS_TOKEN = require('../../utils/authorization');
 const validator = require('../../utils/validator');
 
 router.prefix("/user");
+
+
+router.get('/news', (ctx, next) => {
+  ctx.body = "新闻page"
+});
 
 // 注册 register
 router.post('/register', validator({
@@ -34,8 +39,7 @@ router.post('/register', validator({
   try {
     const user = await createUser(ctx.request.body)
     if (user) {
-      ctx.success(null, '注册成功');
-      http_log('user', 'register', `${user.userId} ${user.userName} 注册成功`);
+      ctx.success(user, '注册成功');
     } else ctx.fail('注册失败，请联系管理员');
   } catch (error) {
     ctx.fail(error);

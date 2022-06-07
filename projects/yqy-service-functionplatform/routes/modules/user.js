@@ -2,7 +2,7 @@
  * @Author: yuanqingyan
  * @Date: 2022-04-07 15:39:46
  * @LastEditors: yuanqingyan
- * @LastEditTime: 2022-05-20 10:40:45
+ * @LastEditTime: 2022-06-07 10:55:55
  * @Description: User Route 用户接口路由
  * @FilePath: \yqy-service-koa\projects\yqy-service-functionplatform\routes\modules\user.js
  */

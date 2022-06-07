@@ -2,7 +2,7 @@
  * @Author: yuanqingyan
  * @Date: 2022-05-24 15:41:39
  * @LastEditors: yuanqingyan
- * @LastEditTime: 2022-05-27 11:34:29
+ * @LastEditTime: 2022-06-07 13:59:23
  * @Description: User Modules 用户操作数据库 MODULES
  * @FilePath: \yqy-service-koa\projects\yqy-service-user\modules\user.js
  */
@@ -27,9 +27,10 @@ async function createUser(userInfo) {
   // 创建事务对象
   const t = await sqlInstance.transaction();
   try {
+    const id = await getRandomID('UID', 9);
     // 先创建 UserModel
     const user = await UserModel.create({
-      userId: getRandomID('UID', 9)
+      userId: id
     }, {
       transaction: t
     });

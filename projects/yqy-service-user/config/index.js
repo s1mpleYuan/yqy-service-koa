@@ -2,7 +2,7 @@
  * @Author: yuanqingyan
  * @Date: 2022-05-24 15:33:07
  * @LastEditors: yuanqingyan
- * @LastEditTime: 2022-05-27 11:27:13
+ * @LastEditTime: 2022-06-07 11:41:43
  * @Description: 配置config文件
  * @FilePath: \yqy-service-koa\projects\yqy-service-user\config\index.js
  */
@@ -13,7 +13,7 @@ const config = {
   // 项目运行端口号
   __project_port: 9100,
   // mysql 数据库链接配置对象
-  __mysql_conection_cofig: {
+  __mysql_connection_config: {
     host: '49.235.247.3',   // 数据库所在服务器IP
     database: 'yqy-user', // 数据库名称
     user: 'yqy-user',  // 数据库登入用户的账户名
@@ -21,7 +21,7 @@ const config = {
     port: 3306 // 数据库端口号
   },
   // 项目接口token标识jsonWebToken配置
-  __jwt_confg: {
+  __jwt_config: {
     secret: 'yqyUserAccess', // 密钥
     expiresIn: '12h' // 超时的时间点
   }

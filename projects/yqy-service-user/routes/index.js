@@ -1,11 +1,11 @@
 /*
  * @Author: yuanqingyan
- * @Date: 2022-05-24 15:39:04
+ * @Date: 2022-03-21 17:11:28
  * @LastEditors: yuanqingyan
- * @Description: 路由Route Index
+ * @LastEditTime: 2022-06-07 11:33:49
+ * @Description: routes 路由index
  * @FilePath: \yqy-service-koa\projects\yqy-service-user\routes\index.js
  */
-
 const compose = require("koa-compose");
 const glob = require("glob");
 const {

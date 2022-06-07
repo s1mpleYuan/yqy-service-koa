@@ -2,8 +2,8 @@
  * @Author: yuanqingyan
  * @Date: 2022-05-06 14:46:13
  * @LastEditors: yuanqingyan
- * @LastEditTime: 2022-05-27 11:28:36
- * @Description: 接口http 入参校验方法
+ * @LastEditTime: 2022-06-07 13:40:43
+ * @Description: 接口http 入参校验中间件
  * @FilePath: \yqy-service-koa\projects\yqy-service-user\utils\validator.js
  */
 // 模块名称
@@ -44,12 +44,12 @@ function validator(options = {}) {
         const value = params[field_key]; // 参数具体值
         if (required && !value) {
           // 当该字段需必填且参数值为空
-          ctx.fail(`${fieldName}不可为空`, 10001);
+          ctx.fail(`${field_key}不可为空`, 10001);
           // error(moduleName, fn, `${fieldName}不可为空`);
           break;
         }
         if (type && typeof value != type) { // 当接口参数值与配置校验的参数值类型不符
-          ctx.fail(`${fieldName} 类型为 ${type}，而非${typeof type}`);
+          ctx.fail(`${field_key} 类型为 ${type}，而非${typeof type}`);
           break;
         }
         if ((min || max) && (!type || (type == 'string' || type == 'number'))) {
@@ -62,13 +62,13 @@ function validator(options = {}) {
           if ((min && size < min) || (max && size > max)) {
             // 判断大小(长度)是否符合配置
             const text = min && max ? `在${min}与${max}之间` : max && !min ? `小于${max}` : `大于${min}`;
-            ctx.fail(`${fieldName}的` + (type == 'number' ? '大小' : '长度') + '应' + text, 10001);
+            ctx.fail(`${field_key}的` + (type == 'number' ? '大小' : '长度') + '应' + text, 10001);
             break;
           }
         }
       }
       // 全部校验循环结束后 判断校验的数量和参数校验配置的key长度对比
-      if (validateNum == keys.length) {
+      if (validated_num == keys.length) {
         // 相等时即为全部校验通过
         await next();
       }

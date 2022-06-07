@@ -2,9 +2,9 @@
  * @Author: yuanqingyan
  * @Date: 2022-04-25 09:53:51
  * @LastEditors: yuanqingyan
- * @LastEditTime: 2022-05-26 14:04:59
+ * @LastEditTime: 2022-05-06 16:14:04
  * @Description: 代码运行时的控制台输出插件
- * @FilePath: \yqy-service-koa\projects\yqy-service-user\utils\logger.js
+ * @FilePath: \yqy-service-koa\projects\yqy-service-functionplatform\utils\logger.js
  */
 const dayjs = require('dayjs');
 const fs = require('fs');
@@ -34,6 +34,7 @@ const save_log = (moduleName, fn, text, type = 'DEBUG') => {
 }
 
 module.exports = function logger() {
+  
   global.http_log = (moduleName, fn, text) => {
     process.stdout.write(`\x1b[7;34m ${moduleName} ` + `\x1b[0;33m ${dayjs().format('YYYY-MM-DD HH:mm:ss')} \x1b[1;32m ${fn} \x1b[0m - ${text}\n`);
     save_log(moduleName, fn, text);
