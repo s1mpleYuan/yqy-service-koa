@@ -2,9 +2,9 @@
  * @Author: yuanqingyan
  * @Date: 2022-05-06 14:46:13
  * @LastEditors: yuanqingyan
- * @LastEditTime: 2022-06-08 16:02:02
+ * @LastEditTime: 2022-06-08 16:04:16
  * @Description: 接口http 入参校验中间件
- * @FilePath: \yqy-service-koa\projects\yqy-service-user\utils\validator.js
+ * @FilePath: \yqy-service-koa\projects\common\utils\validator.js
  */
 
 /**
@@ -13,7 +13,7 @@
  * @author: yuanqingyan
  * @param {Object} options 配置对象 { key: { required, min, max, type } }
  */
-function validator(options = {}) {
+ function validator(options = {}) {
   return async (ctx, next) => {
     // 接口请求头中的调取的方法路径以及接口类型
     const {

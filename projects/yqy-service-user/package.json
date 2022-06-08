@@ -4,8 +4,10 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "dev": "supervisor app.js",
+    "build:pro": "cross-env NODE_ENV=production MODULE_NAME=User npm run pro",
+    "build:dev": "cross-env NODE_ENV=development MODULE_NAME=User npm run dev",
     "pro": "node app.js",
+    "dev": "supervisor app.js",
     "test": "node test.js",
     "buildSql": "node build.js"
   },

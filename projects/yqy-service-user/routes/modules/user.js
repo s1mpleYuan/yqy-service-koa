@@ -2,7 +2,7 @@
  * @Author: yuanqingyan
  * @Date: 2022-05-24 15:39:45
  * @LastEditors: yuanqingyan
- * @LastEditTime: 2022-06-07 14:00:34
+ * @LastEditTime: 2022-06-08 16:01:30
  * @Description: User Route 用户接口路由
  * @FilePath: \yqy-service-koa\projects\yqy-service-user\routes\modules\user.js
  */
@@ -62,12 +62,14 @@ router.post('/login', validator({
   try {
     const user = await queryUserByLogin(ctx.request.body);
     if (user) {
+      INFO(ctx.request.url, `${user.userId} - ${user.userName} 登录`);
       ctx.success({
         ...user.dataValues,
         token: ACCESS_TOKEN(user.userId)
       }, '登录成功');
-      http_log('user', 'login', `${user.userId} ${user.userName} 登录`);
-    } else ctx.fail('登录失败，请检查输入的账号或密码是否正确');
+    } else {
+      ctx.fail('登录失败，请检查输入的账号或密码是否正确');
+    }
   } catch (error) {
     ctx.fail(error)
   }
