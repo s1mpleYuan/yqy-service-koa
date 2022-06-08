@@ -56,7 +56,8 @@ app.use(
     // token 白名单
     path: [
       /^\/user\/login/,
-      /^\/user\/register/
+      /^\/user\/register/,
+      /^\/user\/getVerificationCode/
     ],
   })
 );

@@ -2,7 +2,7 @@
  * @Author: yuanqingyan
  * @Date: 2022-05-24 15:44:43
  * @LastEditors: yuanqingyan
- * @LastEditTime: 2022-05-27 11:34:50
+ * @LastEditTime: 2022-06-08 16:37:32
  * @Description: User Sequelize Model
  * @FilePath: \yqy-service-koa\projects\yqy-service-user\models\user.js
  */
@@ -24,6 +24,10 @@ UserModel.init({
     type: DataTypes.STRING(12),
     primaryKey: true,
     comment: '用户唯一标识id'
+  },
+  userType: {
+    type: DataTypes.STRING(10),
+    comment: '用户类型 ordinary 普通用户 system 系统管理员 other 其他特殊权限用户'
   },
   createTime: {
     type: DataTypes.DATE,

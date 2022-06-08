@@ -2,7 +2,7 @@
  * @Author: yuanqingyan
  * @Date: 2022-05-06 14:46:13
  * @LastEditors: yuanqingyan
- * @LastEditTime: 2022-06-08 16:02:02
+ * @LastEditTime: 2022-06-08 17:19:12
  * @Description: 接口http 入参校验中间件
  * @FilePath: \yqy-service-koa\projects\yqy-service-user\utils\validator.js
  */
@@ -37,7 +37,8 @@ function validator(options = {}) {
           required,
           min,
           max,
-          type
+          type,
+          dependentFields
         } = options[field_key]; // 当前参数的校验配置
         const value = params[field_key]; // 参数具体值
         if (required && !value) {
@@ -46,9 +47,26 @@ function validator(options = {}) {
           ctx.fail(`${field_key}不可为空`, 10001);
           break;
         }
+        if ((dependentFields || (Array.isArray(dependentFields) && dependentFields.length > 0)) && value) {
+          // 该字段有后置字段必填依赖时(即当前字段有值，则配置的后置字段必须必填)
+          if (typeof dependentFields == 'string' && !params[dependentFields]) {
+            ERROR(path, `${field_key} 填入时，${dependentFields} 也必须填写`);
+            ctx.fail(`${field_key} 填入时，${dependentFields} 也必须填写`, 10001);
+            break;
+          }
+          if (Array.isArray(dependentFields) && dependentFields.length > 0) {
+            for (const fields in dependentFields) {
+              if (!params[fields]) {
+                ERROR(path, `${field_key} 填入时，${fields} 也必须填写`);
+                ctx.fail(`${field_key} 填入时，${fields} 也必须填写`, 10001);
+                break;
+              }
+            }
+          }
+        }
         if (type && typeof value != type) { // 当接口参数值与配置校验的参数值类型不符
           ERROR(path, `${field_key} 类型为 ${type}，而非${typeof type}`);
-          ctx.fail(`${field_key} 类型为 ${type}，而非${typeof type}`);
+          ctx.fail(`${field_key} 类型为 ${type}，而非${typeof type}`, 10001);
           break;
         }
         if ((min || max) && (!type || (type == 'string' || type == 'number'))) {
@@ -70,6 +88,7 @@ function validator(options = {}) {
       // 全部校验循环结束后 判断校验的数量和参数校验配置的key长度对比
       if (validated_num == keys.length) {
         // 相等时即为全部校验通过
+        ctx.params = params;
         await next();
       }
     }

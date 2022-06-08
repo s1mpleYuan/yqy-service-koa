@@ -2,7 +2,7 @@
  * @Author: yuanqingyan
  * @Date: 2022-03-23 09:46:59
  * @LastEditors: yuanqingyan
- * @LastEditTime: 2022-06-07 13:58:28
+ * @LastEditTime: 2022-06-08 16:41:59
  * @Description: utils 工具类 【mysql-sequelize实例】
  * @FilePath: \yqy-service-koa\projects\yqy-service-user\utils\index.js
  */
@@ -11,11 +11,12 @@ const {
 } = require("sequelize");
 const config = require("../config/index").__mysql_connection_config;
 const dayjs = require('dayjs');
+const { NODE_ENV } = process.env;
 
 const sequelizeInstance = new Sequelize(config.database, config.user, config.password, {
   host: config.host,
   dialect: "mysql",
-  logging: false
+  logging: NODE_ENV == 'development'
 });
 
 /**

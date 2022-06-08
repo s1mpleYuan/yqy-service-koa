@@ -9,6 +9,7 @@
     "pro": "node app.js",
     "dev": "supervisor app.js",
     "test": "node test.js",
+    "build:sql": "cross-env NODE_ENV=development MODULE_NAME=User npm run buildSql",
     "buildSql": "node build.js"
   },
   "keywords": [],

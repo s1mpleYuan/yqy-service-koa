@@ -2,7 +2,7 @@
  * @Author: yuanqingyan
  * @Date: 2022-05-24 15:33:07
  * @LastEditors: yuanqingyan
- * @LastEditTime: 2022-06-07 11:41:43
+ * @LastEditTime: 2022-06-08 17:13:09
  * @Description: 配置config文件
  * @FilePath: \yqy-service-koa\projects\yqy-service-user\config\index.js
  */
@@ -24,6 +24,11 @@ const config = {
   __jwt_config: {
     secret: 'yqyUserAccess', // 密钥
     expiresIn: '12h' // 超时的时间点
+  },
+  // 万维易源 api
+  __show_api_config: {
+    appId: '168712',
+    secret: 'f9cad40fe8a147e592b2c8346b8c994d'
   }
 }
 
